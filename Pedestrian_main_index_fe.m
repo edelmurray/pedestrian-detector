@@ -93,6 +93,8 @@ training_labels= [training_labels(indexesZeros); training_labels(indexesOnes)];
 
 model = SVMtraining(training_images,training_labels);
 
+%model = TreeBagger(100,training_images,training_labels);
+
 % After calculating the support vectors, we can draw them in the previous
 % image
 % 
@@ -117,6 +119,7 @@ for i=1:size(testing_images,1)
     testnumber= testing_images(i,:);
     
     classificationResult(i,1) = SVMTesting(testnumber,model);
+    %classificationResult(i,1) = str2double(predict(model, testnumber));
 
 end
 % 

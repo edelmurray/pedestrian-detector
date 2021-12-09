@@ -59,6 +59,8 @@ end
  end
 
 model = SVMtraining(feature_vectors,training_labels);
+
+%model = TreeBagger(100,feature_vectors,training_labels);
  
 save detectorModel model
 % 
@@ -76,6 +78,7 @@ save detectorModel model
 %     testnumber= test_feature_vectors(i,:);
 %     
 %     classificationResult(i,1) = SVMTesting(testnumber,model);
+     %classificationResult(i,1) = str2double(predict(model, testnumber));
 % 
 % end
 % 
