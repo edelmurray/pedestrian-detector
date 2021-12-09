@@ -12,15 +12,13 @@ sampling = 10;
 % label negative and poitive images accordingly, were going to combine them
 % into one dataset, not loading in labels so have to assign ourselves. 
 for i=1:size(positive_images)
-    img = ["1" positive_images(i,:)];
-    all_images = [all_images; img ];
+    all_images = [all_images; ["1" positive_images(i,:)] ];
 end
 for j=1:size(negative_images)
-%     img = ["-1" negative_images(j,:)];
     all_images = [all_images; ["-1" negative_images(j,:)]];
 end
 
-randomize images for training/testing
+%randomize images for training/testing
 all_images = all_images(randperm(size(all_images,1)),:);
 
 k_loop = fix(size(all_images,1)/k_fold);
@@ -44,6 +42,7 @@ for m=1:k_fold
             index=index+1;
         end
     end
+    % reassign the training labels
     training_labels = [training;training(1,:)];
      feature_vectors = [];
      for i=1:size(training,1)
